@@ -10,8 +10,7 @@
 
 <body>
   <div id="app">
-    Hello {{ name }}
-    <a :href="url" target="_blank">Go to {{ website }}</a>
+    <a v-if="show" :href="url" target="_blank">Go to {{ website }}</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -19,8 +18,8 @@
     let app = new Vue({
       el: '#app',
       data: {
-        name: 'World!',
         url: 'https://google.com',
+        show: true,
         website: 'Google'
       }
     })
