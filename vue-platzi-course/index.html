@@ -10,8 +10,10 @@
 
 <body>
   <div id="app">
-    <h1> {{ title | uppercase }} </h1>
-    <h2> {{ subtitle | lowercase }} </h2>
+    Counter is on: {{ counter }}
+    <button v-on:click="add">Add 1</button>
+
+    <button v-on:click="remove">Remove 1</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -19,15 +21,14 @@
     let app = new Vue({
       el: '#app',
       data: {
-        title: 'You are in platzi',
-        subtitle: 'You\'re watching vue.js basic course'
+        counter: 0
       },
-      filters: {
-        lowercase: function(str){
-          return str.toLowerCase()
+      methods: {
+        add: function(){
+          this.counter++
         },
-        uppercase: function(str){
-          return str.toUpperCase()
+        remove: function(){
+          this.counter--
         }
       }
     })
