@@ -9,11 +9,21 @@
 </head>
 
 <body>
-  <div id="app">
-    Counter is on: {{ counter }}
-    <button @click="counter++">Add 1</button>
+  <div id="app" @submit.prevent="submit">
+    <input type="text" name="name" id="" placeholder="Enter your name" v-model="name">
+    <p> Your name is: {{ name | uppercase }}</p>
 
-    <button @click="counter--">Remove 1</button>
+    <form method="GET">
+      <h2> Which are your favorite games?</h2>
+      <input v-model="games" type="checkbox" id="gow" value="gow">
+      <label for="gow">God of War</label>
+      <input v-model="games" type="checkbox" id="mgs" value="mgs">
+      <label for="mgs">Metal Gear Solid</label>
+      <input v-model="games" type="checkbox" id="spiderman" value="spiderman">
+      <label for="spiderman">Spiderman</label>
+
+      <button type="submit"><Small>Send</Small></button>
+    </form>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,8 +31,20 @@
     let app = new Vue({
       el: '#app',
       data: {
-        counter: 0
-      }
+        name: '',
+        games: []
+      },
+      filters: {
+        uppercase: function (str) {
+          return str.toUpperCase()
+        }
+      },
+      methods: {
+        submit: function(){
+          console.log('Submit form.')
+          console.log(this.games)
+        }
+      },
     })
   </script>
 </body>
