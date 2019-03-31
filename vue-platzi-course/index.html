@@ -10,7 +10,11 @@
 
 <body>
   <div id="app">
-    <a v-if="show" :href="url" target="_blank">Go to {{ website }}</a>
+    <template v-if="show">
+        <h1> Title </h1>
+        <h2> Subtitle </h2>
+        <a :href="url" target="_blank">Go to {{ website }}</a>    
+    </template>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
