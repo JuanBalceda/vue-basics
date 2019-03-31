@@ -9,19 +9,13 @@
 </head>
 
 <body>
-  <div id="app" @submit.prevent="submit">
-    <input type="text" name="name" id="" placeholder="Enter your name" v-model="name">
-    <p> Your name is: {{ name | uppercase }}</p>
-
-    <form method="GET">
+  <div id="app">
+    <form @submit.prevent="submit" method="GET">
       <h2> Which are your favorite games?</h2>
-      <input v-model="games" type="checkbox" id="gow" value="gow">
-      <label for="gow">God of War</label>
-      <input v-model="games" type="checkbox" id="mgs" value="mgs">
-      <label for="mgs">Metal Gear Solid</label>
-      <input v-model="games" type="checkbox" id="spiderman" value="spiderman">
-      <label for="spiderman">Spiderman</label>
-
+      <template v-for="g in games">
+        <input v-model="selectedGames" type="checkbox" v-bind:id="g.value" :value="g.value">
+        <label :for="g.value"> {{ g.name }}</label>
+      </template>
       <button type="submit"><Small>Send</Small></button>
     </form>
   </div>
@@ -32,17 +26,22 @@
       el: '#app',
       data: {
         name: '',
-        games: []
-      },
-      filters: {
-        uppercase: function (str) {
-          return str.toUpperCase()
-        }
+        games: [{
+          name: 'God of War',
+          value: 'gow'
+        }, {
+          name: 'Metal Gear Solid',
+          value: 'mgs'
+        }, {
+          name: 'Spiderman',
+          value: 'spiderman'
+        }],
+        selectedGames: []
       },
       methods: {
-        submit: function(){
+        submit: function () {
           console.log('Submit form.')
-          console.log(this.games)
+          console.log(this.selectedGames)
         }
       },
     })
