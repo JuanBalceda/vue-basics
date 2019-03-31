@@ -10,11 +10,14 @@
 
 <body>
   <div id="app">
-    <template v-if="show">
+    <div v-show="show">
         <h1> Title </h1>
         <h2> Subtitle </h2>
         <a :href="url" target="_blank">Go to {{ website }}</a>    
-    </template>
+    </div>
+    <div v-show="!show">
+        <h1> No content </h1>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
