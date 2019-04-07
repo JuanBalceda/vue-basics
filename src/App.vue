@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png" alt="vue_logo" width="100px">
+    <img src="https://juanbalceda.github.io/vue-basics/src/assets/logo.png" alt="vue_logo" width="100px">
     <h1>{{ name }}</h1>
     <select v-model="selectedCountry">
       <option v-for="country in countries" v-bind:value="country.name" :key="country.alpha2Code">{{ country.name }}</option>

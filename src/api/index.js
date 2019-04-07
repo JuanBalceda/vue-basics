@@ -4,7 +4,7 @@ const {
   apiKey
 } = config
 
-const url_artists = `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=:country&api_key=${apiKey}&format=json`
+const url_artists = `https://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=:country&api_key=${apiKey}&format=json`
 const url_countries = `https://restcountries.eu/rest/v2/all`
 
 function getCountries() {
