@@ -1,6 +1,9 @@
 # vue-basics
 Vue.js basic platzi course
 
+# Project
+https://juanbalceda.github.io/vue-basics/
+
 ## Build Setup
 
 ``` bash
