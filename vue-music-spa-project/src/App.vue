@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <h1>{{ name }}</h1>
+    <select v-model="selectedCountry">
+      <option v-for="country in countries" v-bind:value="country.name" :key="country.alpha2Code">{{ country.name }}</option>
+    </select>
+    <spinner v-show="loading"></spinner>
     <ul>
       <artist v-for="artist in artists" :artist="artist" :key="artist.mbid"></artist>
     </ul>
@@ -8,27 +12,49 @@
 </template>
 
 <script>
-import Artist from './components/Artist.vue'
-import getArtists from "./api";
+import Artist from "./components/Artist.vue"
+import Spinner from "./components/Spinner.vue"
+import { getArtists, getCountries } from "./api"
 
 export default {
   name: "app",
   data() {
     return {
       name: "Vue Music",
-      artists: []
-    };
+      artists: [],
+      countries: [],
+      selectedCountry: "Peru",
+      loading: true
+    }
   },
   components: {
-    Artist
+    Artist,
+    Spinner
+  },
+  methods: {
+    refreshArtists() {
+      const self = this
+      this.loading = true
+      this.artists = []
+      getArtists(this.selectedCountry).then(function(artists) {
+        self.loading = false
+        self.artists = artists
+      })
+    }
   },
   mounted: function() {
-    const self = this;
-    getArtists().then(function(artists) {
-      self.artists = artists;
-    });
+    const self = this
+    this.refreshArtists()
+    getCountries().then(function(countries) {
+      self.countries = countries
+    })
+  },
+  watch: {
+    selectedCountry: function() {
+      this.refreshArtists()
+    }
   }
-};
+}
 </script>
 
 <style>
